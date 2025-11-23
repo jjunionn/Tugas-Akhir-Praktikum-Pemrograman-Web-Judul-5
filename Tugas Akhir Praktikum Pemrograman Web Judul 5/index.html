@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Interaktif</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-image: url('astro.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 0;
+        }
+
+        .calculator {
+            width: 320px;
+            margin: 40px auto;
+            background: rgba(20, 61, 87, 0.90);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #0006;
+            backdrop-filter: blur(4px);
+        }
+
+        #display {
+            background: #0e2d42;
+            color: white;
+            font-size: 32px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: right;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .buttons {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.operator { background: #f4a261; }
+        button.equals { background: #2a9d8f; color: white; }
+        button.clear { background: #e76f51; color: white; }
+        button.memory { background: #556b2f; color: white; }
+
+        #historyPanel {
+            display: none;
+            margin-top: 20px;
+            background: #0e3752;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        #toggleHistory {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background: #264653;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div id="display">0</div>
+
+        <button id="toggleHistory">Lihat History</button>
+
+        <div id="historyPanel">
+            <h3>History</h3>
+            <div id="historyList"></div>
+        </div>
+
+        <div class="buttons">
+
+            <button class="memory" onclick="memoryAdd()">M+</button>
+            <button class="memory" onclick="memorySubtract()">M-</button>
+            <button class="memory" onclick="memoryRecall()">MR</button>
+            <button class="memory" onclick="memoryClear()">MC</button>
+
+            <button class="clear" onclick="clearAll()">C</button>
+            <button class="clear" onclick="clearEntry()">CE</button>
+            <button class="operator" onclick="appendOperator('/')">÷</button>
+            <button class="operator" onclick="appendOperator('*')">×</button>
+
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="operator" onclick="appendOperator('-')">−</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="operator" onclick="appendOperator('+')">+</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="equals" onclick="calculate()">=</button>
+
+            <button onclick="appendNumber('0')" style="grid-column: span 2;">0</button>
+            <button onclick="appendDecimal()">.</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
